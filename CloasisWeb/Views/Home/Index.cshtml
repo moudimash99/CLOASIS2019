@@ -1,0 +1,358 @@
+﻿@{
+    ViewBag.Title = "Home";
+    List<CloasisWeb.ApiInfrastructure.ApiModels.CourseApiModel> listOfCourses = (List<CloasisWeb.ApiInfrastructure.ApiModels.CourseApiModel>)ViewBag.courses;
+}
+
+<h5   style="margin-left:10px;    display: block; margin-top: -10px; margin-bottom: 10px;"><a href="#" style="color:black;" title="Previous semester"><i class="icon-arrow-left52"></i></a> @ViewBag.current</h5>
+
+<div class="row">
+
+    <div class="col-sm-9 col-lg-9">
+
+        @{
+            foreach (var item in listOfCourses)
+            {
+                string[] courseInstanse = item.CourseInstance.Split(',');
+                string name = item.Instructor + item.CourseID + "a";
+                var fulltitle = courseInstanse[2];
+                var subtitle = fulltitle.Split('(')[0];
+                var percent = Convert.ToInt32(item.CourseInstance.Split('(', ')')[1]);
+
+
+                <div class="col-md-6">
+                    <div class="panel border-left-lg border-left-primary">
+                        <div class="panel-body">
+                            <div class="row">
+
+
+                                <div class="col-md-8">
+                                    <h6 class="no-margin-top"><a href="@Url.Action("Index", "Course", new { courseId = item.CourseOfferingId })">@item.CourseNumber</a> </h6>
+                                    <p class="text-muted" style="font-size:x-small"> @subtitle</p>
+                                </div>
+                                <div class="col-md-4">
+                                    <ul class="list task-details" style="list-style:none;">
+                                        <li>
+                                            <a href="#" class="label label-info"> @percent Students     </a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div style="margin-bottom:13px;">
+                                    <label style="font-size:x-small; ">CLO progress <span>@percent%</span></label>
+                                    <div class="progress progress-xxs">
+                                        <div class="progress-bar progress-bar-primary" style="width: @percent%">
+                                            <span class="sr-only">@percent% Complete</span>
+                                        </div>
+                                    </div>
+
+                                </div>
+
+                                <div class="collapse" id="@name">
+                                    <div class="panel-body">
+
+                                        <ul class="progress-list">
+                                            <li>
+                                                <label>CLO 1 <span>50%</span></label>
+                                                <div class="progress progress-xxs">
+                                                    <div class="progress-bar progress-bar-info" style="width: 50%">
+                                                        <span class="sr-only">50% Complete</span>
+                                                    </div>
+                                                </div>
+                                            </li>
+                                            <li>
+                                                <label>CLO 2 <span>70%</span></label>
+                                                <div class="progress progress-xxs">
+                                                    <div class="progress-bar progress-bar-danger" style="width: 70%">
+                                                        <span class="sr-only">70% Complete</span>
+                                                    </div>
+                                                </div>
+                                            </li>
+                                            <li>
+                                                <label>CLO 3 <span>80%</span></label>
+                                                <div class="progress progress-xxs">
+                                                    <div class="progress-bar progress-bar-success" style="width: 80%">
+                                                        <span class="sr-only">80% Complete</span>
+                                                    </div>
+                                                </div>
+                                            </li>
+                                            <li>
+                                                <label>CLO 4 <span>60%</span></label>
+                                                <div class="progress progress-xxs">
+                                                    <div class="progress-bar progress-bar-primary" style="width: 60%">
+                                                        <span class="sr-only">60% Complete</span>
+                                                    </div>
+                                                </div>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+
+                                <a href="#"><img src="@Url.Content("~/Content/assets/images/1.jpg")" class="img-circle img-xs" alt=""></a>
+                                <a href="#"><img src="@Url.Content("~/Content/assets/images/3.jpg")" class="img-circle img-xs" alt=""></a>
+                                <a href="#"><img src="@Url.Content("~/Content/assets/images/2.jpg")" class="img-circle img-xs" alt=""></a>
+                                <a href="@Url.Action("Index", "Course", new { courseId = item.CourseOfferingId })" class="text-default">&nbsp;<i class=" icon-search4"></i></a>
+
+                            </div>
+                        </div>
+                        <div class="panel-footer panel-footer-condensed">
+                            <div class="heading-elements">
+                                <span class="heading-text">
+                                    @*Last modified: <span class="text-semibold">
+            28 January, 2015
+        </span>*@
+                                </span>
+                                <button class="btn btn-link pull-right" type="button" data-toggle="collapse" data-target="#@name" aria-expanded="false"> Expand <span class="caret"></span></button>
+
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            }
+        }
+
+
+
+    </div>
+
+    <div class="col-sm-3 col-lg-3">
+        <!-- Dropzone -->
+        <div class="content-group">
+            <form action="#" class="dropzone" id="dropzone_multiple"></form>
+        </div>
+        <!-- /dropzone -->
+        @*<!-- Subscription form -->
+            <div class="panel panel-flat">
+                <div class="panel-heading">
+                    <h6 class="panel-title">New Attendance</h6>
+                    <div class="heading-elements">
+                        <form class="heading-form" action="#">
+                            <div class="form-group">
+
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                <form class="panel-body" action="#">
+                    <div class="form-group has-feedback">
+                        <input type="text" class="form-control" placeholder="Course">
+                        <div class="form-control-feedback">
+                            <i class="icon-mention text-muted"></i>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <select data-placeholder="Type" class="select">
+                            <option value="updates">Present</option>
+                        </select>
+                    </div>
+                    <div class="form-group has-feedback">
+                        <input type="text" class="form-control" placeholder="Date">
+                    </div>
+                    <div class="row">
+                        <div class="col-xs-6">
+
+                        </div>
+                        <div class="col-xs-6 text-right">
+                            <button type="submit" class="btn btn-info">Next</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <!-- /subscription form -->
+
+
+            <!-- Application status -->
+            <div class="panel panel-flat">
+                <div class="panel-heading">
+                    <h6 class="panel-title">Top CLOs</h6>
+                    <div class="heading-elements">
+
+                    </div>
+                </div>
+                <div class="panel-body">
+                    <ul class="progress-list">
+                        <li>
+                            <label>  CLO No. 1 <span>50%</span></label>
+                            <div class="progress progress-xxs">
+                                <div class="progress-bar progress-bar-info" style="width: 50%">
+                                    <span class="sr-only">50% Complete</span>
+                                </div>
+                            </div>
+                        </li>
+                        <li>
+                            <label>  CLO No. 2 <span>70%</span></label>
+                            <div class="progress progress-xxs">
+                                <div class="progress-bar progress-bar-danger" style="width: 70%">
+                                    <span class="sr-only">70% Complete</span>
+                                </div>
+                            </div>
+                        </li>
+                        <li>
+                            <label>  CLO No. 3 <span>80%</span></label>
+                            <div class="progress progress-xxs">
+                                <div class="progress-bar progress-bar-success" style="width: 80%">
+                                    <span class="sr-only">80% Complete</span>
+                                </div>
+                            </div>
+                        </li>
+                        <li>
+                            <label>CLO No. 4 <span>60%</span></label>
+                            <div class="progress progress-xxs">
+                                <div class="progress-bar progress-bar-primary" style="width: 60%">
+                                    <span class="sr-only">60% Complete</span>
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <!-- /application status -->*@
+    </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+<!-- /widgets list -->
+<script type="text/javascript">
+
+
+    $(function () {
+        progressPercentage('#progress_course_1', 46, 3, "#eee", "#EF5350", 0.34);
+        progressPercentage('#progress_course_2', 46, 3, "#eee", "#43a047", 0.93);
+        progressPercentage('#progress_course_3', 46, 3, "#eee", "#43a047", 0.98);
+        progressPercentage('#progress_course_4', 46, 3, "#eee", "#43a047", 0.84);
+
+        @foreach(var item in listOfCourses)
+        {
+             var percent = Convert.ToInt32(item.CourseInstance.Split('(', ')')[1]) / 100f;
+             <text>
+                  progressPercentage(@item.Instructor@item.CourseID, 46, 3, "#eee", "#EF5350", @percent);
+             </text>
+        }
+
+                    // Chart setup
+                    function progressPercentage(element, radius, border, backgroundColor, foregroundColor, end) {
+
+
+                        // Basic setup
+                        // ------------------------------
+
+                        // Main variables
+                        var d3Container = d3.select(element),
+                            startPercent = 0,
+                            fontSize = 22,
+                            endPercent = end,
+                            twoPi = Math.PI * 2,
+                            formatPercent = d3.format('.0%'),
+                            boxSize = radius * 2;
+
+                        // Values count
+                        var count = Math.abs((endPercent - startPercent) / 0.01);
+
+                        // Values step
+                        var step = endPercent < startPercent ? -0.01 : 0.01;
+
+
+                        // Create chart
+                        // ------------------------------
+
+                        // Add SVG element
+                        var container = d3Container.append('svg');
+
+                        // Add SVG group
+                        var svg = container
+                            .attr('width', boxSize)
+                            .attr('height', boxSize)
+                            .append('g')
+                            .attr('transform', 'translate(' + radius + ',' + radius + ')');
+
+
+                        // Construct chart layout
+                        // ------------------------------
+
+                        // Arc
+                        var arc = d3.svg.arc()
+                            .startAngle(0)
+                            .innerRadius(radius)
+                            .outerRadius(radius - border)
+                            .cornerRadius(20);
+
+
+                        //
+                        // Append chart elements
+                        //
+
+                        // Paths
+                        // ------------------------------
+
+                        // Background path
+                        svg.append('path')
+                            .attr('class', 'd3-progress-background')
+                            .attr('d', arc.endAngle(twoPi))
+                            .style('fill', backgroundColor);
+
+                        // Foreground path
+                        var foreground = svg.append('path')
+                            .attr('class', 'd3-progress-foreground')
+                            .attr('filter', 'url(#blur)')
+                            .style({
+                            'fill': foregroundColor,
+                    'stroke': foregroundColor
+                });
+
+            // Front path
+            var front = svg.append('path')
+                .attr('class', 'd3-progress-front')
+                .style({
+                    'fill': foregroundColor,
+                    'fill-opacity': 1
+                });
+
+
+            // Text
+            // ------------------------------
+
+            // Percentage text value
+            var numberText = svg
+                .append('text')
+                .attr('dx', 0)
+                .attr('dy', (fontSize / 2) - border)
+                .style({
+                    'font-size': fontSize + 'px',
+                    'line-height': 1,
+                    'fill': foregroundColor,
+                    'text-anchor': 'middle'
+                });
+
+
+            // Animation
+            // ------------------------------
+
+            // Animate path
+            function updateProgress(progress) {
+            foreground.attr('d', arc.endAngle(twoPi * progress));
+            front.attr('d', arc.endAngle(twoPi * progress));
+            numberText.text(formatPercent(progress));
+        }
+
+        // Animate text
+        var progress = startPercent;
+        (function loops() {
+                updateProgress(progress);
+                if (count > 0) {
+                    count--;
+                    progress += step;
+                    setTimeout(loops, 10);
+                }
+            })();
+        }
+    });
+</script>

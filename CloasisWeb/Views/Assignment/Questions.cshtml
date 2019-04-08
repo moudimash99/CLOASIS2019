@@ -1,0 +1,342 @@
+﻿
+@{
+    Layout = "~/Views/Shared/_CourseLayout.cshtml";
+    ViewBag.Title = "Questions";
+    ViewBag.CourseName = "CMPS 253 Spring 2017/2018";
+}
+
+
+<div class="row">
+    <div class="col-md-8">
+        <form> 
+            <!-- Hover rows -->
+            <div class="panel panel-flat">
+                <div class="panel-heading">
+                    <h5 class="panel-title">Manage Questions </h5>
+                    <div class="heading-elements">
+                        <a class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" href="#">Add New </a>
+                    </div>
+
+                </div>
+                <div class="panel-body">
+
+                    <div class="table-responsive">
+                        <table class="table table-hover">
+                            <thead>
+                                <tr>
+                                    <th scope="col">#</th>
+                                    <th scope="col">Question</th> 
+                                    <th scope="col">Date</th>
+                                    <th scope="col">Weight</th> 
+                                    <th scope="col">Average</th> 
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <th>1</th>
+                                    <td>Group Project</td>
+                                    <td>4/28/16 4:53PM</td>
+                                    <td>25</td>
+                                    <td>10</td>
+                                    <td>
+                                        <ul class="icons-list">
+                                            <li><a href="#"><i class="icon-pencil7"></i></a></li>
+                                            <li><a href="#"><i class="icon-trash"></i></a></li>
+
+                                        </ul>
+                                    </td>
+                                </tr>
+
+                                <tr>
+                                    <th>2</th>
+                                    <td>Group Project</td>
+                                    <td>4/28/16 4:53PM</td>
+                                    <td>25</td>
+                                    <td>10</td>
+                                    <td>
+                                        <ul class="icons-list">
+                                            <li><a href="#"><i class="icon-pencil7"></i></a></li>
+                                            <li><a href="#"><i class="icon-trash"></i></a></li>
+
+                                        </ul>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <!-- /hover rows -->
+
+        </form>
+    </div>
+    <div class="col-md-4">
+        <div class="panel panel-default">
+            <div class="panel-body">
+                <div class="panel panel-body text-center">
+                    <div class="svg-inline position-relative" id="progress_icon_two"></div>
+                    <h2 class="progress-percentage mt-15 mb-5 text-semibold">Total Average</h2>
+
+                    <div class="text-size-small text-muted">Total average of all the questions</div>
+                </div>
+
+
+
+                <ul class="progress-list">
+                    <li>
+                        <label>clo 1 <span>40%</span></label>
+                        <div class="progress progress-xxs">
+                            <div class="progress-bar progress-bar-info" style="width: 40%">
+                                <span class="sr-only">40 Students</span>
+                            </div>
+                        </div>
+                    </li>
+                    <li>
+                        <label>clo 2 <span>30%</span></label>
+                        <div class="progress progress-xxs">
+                            <div class="progress-bar progress-bar-danger" style="width: 30%">
+                                <span class="sr-only">30 Student</span>
+                            </div>
+                        </div>
+                    </li>
+                    <li>
+                        <label>clo 3<span>20%</span></label>
+                        <div class="progress progress-xxs">
+                            <div class="progress-bar progress-bar-success" style="width: 20%">
+                                <span class="sr-only">20 Student</span>
+                            </div>
+                        </div>
+                    </li>
+                    <li>
+                        <label>clo 4<span>33%</span></label>
+                        <div class="progress progress-xxs">
+                            <div class="progress-bar progress-bar-primary" style="width: 33%">
+                                <span class="sr-only">33 Student</span>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+
+</div>
+
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">New Question</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div style="padding-right:25px; padding-left:25px;">
+
+                <div class="form-group">
+                    <label>Question Title</label>
+                    <input class="form-control" placeholder="Enter Question Title ">
+                </div>
+
+                <div class="form-group">
+                    <label>Short Title</label>
+                    <input class="form-control" placeholder="Enter Short Title ">
+                </div>
+
+                <div class="form-group">
+                    <label>Question Order</label>
+                    <input type="number" placeholder="Question Number" class="form-control" />
+                </div>
+                <div class="form-group">
+                    <label>Max Points</label>
+                    <input type="number" placeholder="Max Points" class="form-control" />
+                </div>
+                <div class="form-group">
+                    <label>Question Date</label>
+                    <input class="form-control" id="date" name="date" placeholder="MM/DD/YYY" type="text" />
+                </div>
+                <!-- Filtering options -->
+                <div class="form-group">
+                    <label><span class="text-semibold">Assignment CLOs</span></label>
+                    <div class="multi-select-full">
+                        <select class="multiselect-filtering" multiple="multiple">
+                            <option value="cheese">Data Structure</option>
+                            <option value="tomatoes">Engineering Management</option>
+                            <option value="mozarella">SDLC</option>
+                            <option value="mushrooms">Requirements</option>
+
+                        </select>
+                    </div>
+                </div>
+
+
+                <div class="form-group">
+                    <label>Question Text</label><br />
+                    <textarea class="form-control" rows="4"> </textarea>
+                </div>
+
+                <div class="custom-control custom-checkbox">
+                    <input type="checkbox" class="custom-control-input" id="customCheck1">
+                    <label class="custom-control-label" for="customCheck1">isGraded</label>
+                </div>
+
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary">Save</button>
+                </div>
+
+
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript">
+
+
+    $(function () {
+
+        progressPercentage('#progress_icon_two', 46, 3, "#eee", "#43a047", 0.60);
+
+
+
+
+        // Chart setup
+        function progressPercentage(element, radius, border, backgroundColor, foregroundColor, end) {
+
+
+            // Basic setup
+            // ------------------------------
+
+            // Main variables
+            var d3Container = d3.select(element),
+                startPercent = 0,
+                fontSize = 22,
+                endPercent = end,
+                twoPi = Math.PI * 2,
+                formatPercent = d3.format('.0%'),
+                boxSize = radius * 2;
+
+            // Values count
+            var count = Math.abs((endPercent - startPercent) / 0.01);
+
+            // Values step
+            var step = endPercent < startPercent ? -0.01 : 0.01;
+
+
+            // Create chart
+            // ------------------------------
+
+            // Add SVG element
+            var container = d3Container.append('svg');
+
+            // Add SVG group
+            var svg = container
+                .attr('width', boxSize)
+                .attr('height', boxSize)
+                .append('g')
+                .attr('transform', 'translate(' + radius + ',' + radius + ')');
+
+
+            // Construct chart layout
+            // ------------------------------
+
+            // Arc
+            var arc = d3.svg.arc()
+                .startAngle(0)
+                .innerRadius(radius)
+                .outerRadius(radius - border)
+                .cornerRadius(20);
+
+
+            //
+            // Append chart elements
+            //
+
+            // Paths
+            // ------------------------------
+
+            // Background path
+            svg.append('path')
+                .attr('class', 'd3-progress-background')
+                .attr('d', arc.endAngle(twoPi))
+                .style('fill', backgroundColor);
+
+            // Foreground path
+            var foreground = svg.append('path')
+                .attr('class', 'd3-progress-foreground')
+                .attr('filter', 'url(#blur)')
+                .style({
+                    'fill': foregroundColor,
+                    'stroke': foregroundColor
+                });
+
+            // Front path
+            var front = svg.append('path')
+                .attr('class', 'd3-progress-front')
+                .style({
+                    'fill': foregroundColor,
+                    'fill-opacity': 1
+                });
+
+
+            // Text
+            // ------------------------------
+
+            // Percentage text value
+            var numberText = svg
+                .append('text')
+                .attr('dx', 0)
+                .attr('dy', (fontSize / 2) - border)
+                .style({
+                    'font-size': fontSize + 'px',
+                    'line-height': 1,
+                    'fill': foregroundColor,
+                    'text-anchor': 'middle'
+                });
+
+
+            // Animation
+            // ------------------------------
+
+            // Animate path
+            function updateProgress(progress) {
+                foreground.attr('d', arc.endAngle(twoPi * progress));
+                front.attr('d', arc.endAngle(twoPi * progress));
+                numberText.text(formatPercent(progress));
+            }
+
+            // Animate text
+            var progress = startPercent;
+            (function loops() {
+                updateProgress(progress);
+                if (count > 0) {
+                    count--;
+                    progress += step;
+                    setTimeout(loops, 10);
+                }
+            })();
+        }
+    });
+
+    $('.multiselect-filtering').multiselect({
+        enableFiltering: true,
+        templates: {
+            filter: '<li class="multiselect-item multiselect-filter"><i class="icon-search4"></i> <input class="form-control" type="text"></li>'
+        },
+        onChange: function () {
+            $.uniform.update();
+        }
+    });
+
+    // Styled checkboxes and radios
+    $(".styled, .multiselect-container input").uniform({ radioClass: 'choice' });
+</script>
+
+
+
+
+

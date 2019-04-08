@@ -1,0 +1,742 @@
+﻿
+@{
+    ViewBag.Title = ViewBag.CourseTitle + " Course ";
+    ViewBag.CourseName = ViewBag.CourseTitle;
+    List<CloasisWeb.ApiInfrastructure.ApiModels.StudentApiModel> listOfStudents = (List<CloasisWeb.ApiInfrastructure.ApiModels.StudentApiModel>)ViewBag.students;
+    List<CloasisWeb.ApiInfrastructure.ApiModels.AttendanceApiModel> listOfAtt = (List<CloasisWeb.ApiInfrastructure.ApiModels.AttendanceApiModel>)ViewBag.att;
+    List<CloasisWeb.ApiInfrastructure.ApiModels.NoteApiModel> listOfNote = (List<CloasisWeb.ApiInfrastructure.ApiModels.NoteApiModel>)ViewBag.Notes;
+    //List<CloasisWeb.ApiInfrastructure.ApiModels.GradeApiModel> listOfGrad = (List<CloasisWeb.ApiInfrastructure.ApiModels.GradeApiModel>)ViewBag.grades;
+    List<CloasisWeb.ApiInfrastructure.ApiModels.COUCloApiModel> listOfClos = (List<CloasisWeb.ApiInfrastructure.ApiModels.COUCloApiModel>)ViewBag.Clos;
+    int hunderpercent = 1;
+    List<CloasisWeb.ApiInfrastructure.ApiModels.StatisticsByAssignmentApiModel> ListofStatByAssi = (List<CloasisWeb.ApiInfrastructure.ApiModels.StatisticsByAssignmentApiModel>)  ViewBag.stats;
+    List<CloasisWeb.ApiInfrastructure.ApiModels.StatisticsByQuestionApiModel> ListofStatByQuestion = (List<CloasisWeb.ApiInfrastructure.ApiModels.StatisticsByQuestionApiModel>)ViewBag.stats2;
+
+    decimal avpera = 0;
+    decimal avperq = 0;
+    decimal ming = 0;
+    decimal maxa = 0;
+
+    int counter1 = 1;
+    foreach (var item in ListofStatByAssi)
+    {
+        avpera += item.Average;
+        counter1++;
+    }
+    avpera = avpera / counter1;
+
+    int counter2 = 1;
+    foreach (var item in ListofStatByQuestion)
+    {
+        avperq += item.Average;
+        counter2++;
+    }
+    avperq = avperq / counter2;
+
+    int counter3 = 1;
+    foreach (var item in ListofStatByAssi)
+    {
+        ming += item.Min;
+        counter3++;
+    }
+    ming = ming / counter3;
+
+    int counter4 = 1;
+    foreach (var item in ListofStatByAssi)
+    {
+        maxa += item.Max;
+        counter4++;
+    }
+    maxa = maxa / counter4;
+
+}
+
+
+<div class="row">
+    <div class="col-sm-6 col-md-3">
+        <div class="panel panel-body">
+            <div class="media no-margin-top content-group">
+                <div class="media-body">
+                    <h6 class="no-margin text-semibold">Max Grades in the Assignments</h6>
+                    <span class="text-muted"></span>
+                </div>
+                <div class="media-right media-middle">
+                    <i class="icon-cog3 icon-2x text-indigo-400 opacity-75"></i>
+                </div>
+            </div>
+            <div class="progress progress-micro mb-10">
+                <div class="progress-bar bg-indigo-400" style="width: @maxa%">
+                    <span class="sr-only">@maxa% Complete</span>
+                </div>
+            </div>
+            <span class="pull-right">@maxa%</span>
+            Point
+        </div>
+    </div>
+    <div class="col-sm-6 col-md-3">
+        <div class="panel panel-body">
+            <div class="media no-margin-top content-group">
+                <div class="media-body">
+                    <h6 class="no-margin text-semibold">Min Grade in Assignmets</h6>
+                  
+                </div>
+                <div class="media-right media-middle">
+                    <i class="icon-pulse2 icon-2x text-danger-400 opacity-75"></i>
+                </div>
+            </div>
+            <div class="progress progress-micro mb-10">
+                <div class="progress-bar bg-danger-400" style="width: @ming%">
+                    <span class="sr-only">@ming% Complete</span>
+                </div>
+            </div>
+            <span class="pull-right">@ming%</span> 
+        </div>
+    </div>
+    <div class="col-sm-6 col-md-3">
+        <div class="panel panel-body">
+            <div class="media no-margin-top content-group">
+                <div class="media-left media-middle">
+                    <i class="icon-cog3 icon-2x text-blue-400 opacity-75"></i>
+                </div>
+                <div class="media-body">
+                    <h6 class="no-margin text-semibold">Average Grade in Assignmets</h6> 
+                </div>
+            </div>
+            <div class="progress progress-micro mb-10">
+                <div class="progress-bar bg-blue" style="width: @avpera%">
+                    <span class="sr-only">@avpera% Complete</span>
+                </div>
+            </div>
+            <span class="pull-right">@avpera%</span>
+            Average
+        </div>
+    </div>
+    <div class="col-sm-6 col-md-3">
+        <div class="panel panel-body">
+            <div class="media no-margin-top content-group">
+                <div class="media-left media-middle">
+                    <i class="icon-pulse2 icon-2x text-success-400 opacity-75"></i>
+                </div>
+                <div class="media-body">
+                    <h6 class="no-margin text-semibold">Average Grade in Questions</h6>
+                    
+                </div>
+            </div>
+            <div class="progress progress-micro mb-10">
+                <div class="progress-bar bg-success-400" style="width: @avperq%">
+                    <span class="sr-only">@avperq% Complete</span>
+                </div>
+            </div>
+            <span class="pull-right">@avperq%</span>
+            Average
+        </div>
+    </div>
+</div>
+<div class="navbar navbar-default navbar-component navbar-xs" style="margin-top:0px;">
+    <ul class="nav navbar-nav" style="margin-left:0px;">
+        <li class="active"><a href="#students" data-toggle="tab"><i class=" icon-grid position-left"></i>Students List</a></li>
+        <li><a href="#insights" data-toggle="tab"><i class=" icon-stats-dots position-left"></i> Attendance Insights </a></li>
+        <li><a href="#clo" data-toggle="tab"><i class="icon-magic-wand position-left"></i> Course Learning Outcomes </a></li>
+    </ul>
+</div>
+@*<!-- Toolbar -->
+    <div class="navbar navbar-default navbar-component navbar-xs">
+        <ul class="nav navbar-nav visible-xs-block">
+            <li class="full-width text-center"><a data-toggle="collapse" data-target="#navbar-filter"><i class="icon-menu7"></i></a></li>
+        </ul>
+        <div class="navbar-collapse collapse" id="navbar-filter">
+            <ul class="nav navbar-nav">
+                <li class="active"><a href="#students" data-toggle="tab"><i class=" icon-grid position-left"></i>Students</a></li>
+                <li><a href="#charts" data-toggle="tab"><i class=" icon-stats-dots position-left"></i> Charts </a></li>
+            </ul>
+            <div class="navbar-right">
+                <ul class="nav navbar-nav">
+                    <li>
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="icon-stack-text position-left"></i> Lectures <span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li>
+                                <a href="@Url.Action("BrowseLectures","Lectures")"><i class="icon-grid"></i> Manage Lectures</a>
+                            </li>
+
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class=" icon-pencil-ruler position-left"></i> Assignments <span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li>
+                                <a href="@Url.Action("Assignments","Assignment")"><i class="icon-grid"></i>Assignments</a>
+                            </li>
+                            <li>
+                                <a href="@Url.Action("Questions","Assignment")"><i class="icon-grid"></i>Questions</a>
+                            </li>
+                        </ul>
+
+                    </li>
+                    <li>
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class=" icon-sort position-left"></i> Grades <span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li>
+                                <a href="@Url.Action("Index","Grades")"><i class="icon-grid"></i>Grades</a>
+                            </li>
+                            <li>
+                                <a href="@Url.Action("CourseGradeDistribution","Course")"><i class="icon-grid"></i>Grade Distribution</a>
+                            </li>
+
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="icon-puzzle3 position-left"></i> Registration <span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li>
+                                <a href="@Url.Action("RegisterStudent","Registration")"><i class="icon-add"></i>Register Student</a>
+                            </li>
+                            <li>
+                                <a href="@Url.Action("ImportStudent","Registration")"><i class=" icon-add"></i>Import Students</a>
+                            </li>
+
+                        </ul>
+                    </li>
+
+                    <li>
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class=" icon-users position-left"></i>Teams <span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li>
+                                <a href="@Url.Action("Index","Team")"><i class="icon-grid"></i> Browse Teams</a>
+                            </li>
+                            <li>
+                                <a href="@Url.Action("TeamMaker","Team")"><i class=" icon-add"></i> Team Maker</a>
+                            </li>
+
+                        </ul>
+                    </li>
+
+                </ul>
+            </div>
+        </div>
+    </div>
+    <!-- /toolbar -->*@
+
+
+<div class="tabbable">
+    <div class="tab-content">
+        <div class="tab-pane fade in active" id="students">
+            <div class="row">
+                <div class="col-md-8">
+                    <div class="panel panel-flat" style="min-height:700px;">
+                        <div class="panel-heading">
+                            <h5 class="panel-title">Students in @ViewBag.CourseTitle</h5>
+                            <div class="heading-elements">
+                                <ul class="icons-list">
+
+                                    <li><a data-action="reload"></a></li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="panel-body">
+                            <table class="table table-hover datatable-select-basic">
+                                <thead>
+                                    <tr>
+                                        <th>AUB ID</th>
+                                        <th>First Name</th>
+                                        <th>Last Name</th>
+                                        <th>IAN</th>
+                                        <th class="text-center">Section Number</th>
+                                        <th style="display:none;">IAN</th>
+                                        <th style="display:none;">IAN</th>
+                                        <th style="display:none;">Picture</th>
+                                        <th class="text-center">Student Id</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @{
+                                    foreach (var item in listOfStudents)
+                                    {
+                                        <tr>
+                                            <td id="aubid">@item.AUBID</td>
+                                            <td id="firstname">@item.FirstName</td>
+                                            <td id="lastname">@item.LastName</td>
+                                            <td id="ian">@item.IAN</td>
+                                            <td id="section" class="text-center"><span class="label label-success">@item.SectionNumber</span></td>
+                                            <td id="middlename" style="display:none;">@item.Middle</td>
+                                            <td id="email" style="display:none;">@item.email</td>
+                                            <td id="picture" style="display:none;">@item.Picture</td>
+                                            <td id="option" class="text-center">
+                                                @item.StudentID
+                                            </td>
+                                        </tr>
+                                }
+                                    }
+
+                                </tbody>
+                            </table>
+                        </div>
+
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="panel-body">
+
+                        <div class="content-group">
+                            <div class="panel-body bg-blue border-radius-top text-center" style="background-image: url(http://demo.interface.club/limitless/assets/images/bg.png); background-size: contain; ">
+                                <div class="content-group-sm">
+                                    <h5 id="studentname" class="text-semibold no-margin-bottom">
+                                        -- --
+                                    </h5>
+                                    <span id="studentaubid" class="display-block">--</span>
+                                </div>
+                                <a href="#" class="display-inline-block content-group-sm">
+                                    <img id="studentpicture" src="#" class="img-circle img-responsive" alt="" style="width: 220px; height: 220px;">
+                                </a>
+                                <ul class="list-inline no-margin-bottom">
+                                    <li><a href="#" class="btn bg-blue-700 btn-rounded btn-icon" title="Send an Email"><i class="icon-paperplane"></i></a></li>
+                                    <li><a href="@Url.Action("Email","App",new { id1 = "25", id2 = "40"})" class="btn bg-blue-700 btn-rounded btn-icon" title="Send Assesment Email"><i class="icon-rulers"></i></a></li>
+                                    <li><a href="#" class="btn bg-blue-700 btn-rounded btn-icon" title="Export Info"><i class=" icon-file-excel"></i></a></li>
+                                    <li><a href="#" class="btn bg-blue-700 btn-rounded btn-icon" title="Print Record"><i class=" icon-printer"></i></a></li>
+
+
+                                </ul>
+                            </div>
+                            <div class="panel panel-body no-border-top no-border-radius-top">
+                                <table class="table table-borderless table-xs content-group-sm">
+                                    <tbody>
+                                        <tr>
+                                            <td><i class=" icon-user position-left"></i> Full Name:</td>
+                                            <td class="text-right"> <span id="studentfullname" class="pull-right-sm">--</span></td>
+                                        </tr>
+                                        <tr>
+                                            <td><i class="icon-envelop4   position-left"></i> Email:</td>
+                                            <td class="text-right"><a href="#" id="studentemail">--</a></td>
+                                        </tr>
+                                        <tr>
+                                            <td><i class="icon-file-check position-left"></i> Team:</td>
+                                            <td class="text-right">None</td>
+                                        </tr>
+                                        <tr>
+                                            <td><i class="icon-alarm-add position-left"></i> Updated:</td>
+                                            <td class="text-right">12 May, 2015</td>
+                                        </tr>
+                                        <tr>
+                                            <td><i class="icon-alarm-check position-left"></i> Created:</td>
+                                            <td class="text-right">25 Feb, 2015</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+
+                                <button type="button" class="btn btn-lg btn-primary btn-raised center-block" data-toggle="modal" data-target="#modal_full"><i class="icon-make-group position-left"></i> View Profile</button>
+
+                            </div>
+
+                        </div>
+
+
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        <div class="tab-pane fade" id="insights">
+            <div class="row">
+                <div class="col-md-1"></div>
+                <div class="col-md-5">
+
+                    <div class="panel panel-flat">
+                        <div class="panel-heading">
+                            <h6 class="panel-title">Top 5 Students</h6>
+
+                        </div>
+                        <ul class="media-list panel-body">
+
+                            @foreach (var item in listOfAtt.OrderByDescending(a => a.KPI).Take(5))
+                        {
+                            <li class="media">
+                                <div class="media-body">
+                                    <span class="text-semibold">@item.Name</span>
+                                    <span class="media-annotation pull-right">@item.KPIText</span>
+                                    <div class="progress progress-micro mb-10">
+                                        <div class="progress-bar bg-success-400" style="width: @item.KPI%">
+                                            <span class="sr-only">@item.KPI% Complete</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
+                    }
+
+
+                        </ul>
+                    </div>
+
+                </div>
+                <div class="col-md-5">
+
+                    <div class="panel panel-flat">
+                        <div class="panel-heading">
+                            <h6 class="panel-title">Bottom 5 Students</h6>
+
+                        </div>
+                        <ul class="media-list panel-body">
+
+                            @foreach (var item in listOfAtt.OrderBy(a => a.KPI).Take(5))
+                        {
+                            <li class="media">
+                                <div class="media-body">
+                                    <span class="text-semibold">@item.Name</span>
+                                    <span class="media-annotation pull-right">@item.KPIText</span>
+                                    <div class="progress progress-micro mb-10">
+                                        <div class="progress-bar bg-danger-400" style="width: @item.KPI%">
+                                            <span class="sr-only">@item.KPI% Complete</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
+                    }
+
+
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-md-1"></div>
+            </div>
+
+
+        </div>
+
+        <div class="tab-pane fade" id="clo">
+            <div class="col-md-1"></div>
+            <div class="col-md-10">
+
+                <div class="panel panel-flat">
+                    <div class="panel-heading">
+                        <h6 class="panel-title text-semibold">Course Learning Outcomes</h6>
+                        <div class="heading-elements">
+                            <ul class="icons-list"> 
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="panel-body">
+                        <div class="chart-container ">
+                            <ul class="media-list panel-body">
+
+
+                                @foreach (var item in listOfClos.OrderByDescending(a => a.Units))
+                                {
+                                    if (hunderpercent == 1)
+                                    {
+                                        hunderpercent = Convert.ToInt32(item.Units);
+                                    }
+                                    var percentage = (Convert.ToInt32(item.Units) * 100) / hunderpercent;
+                        <li class="media">
+                            <div class="media-body">
+                                <span class="text-semibold">@item.CLO</span>
+                                <span class="media-annotation pull-right">@item.Units</span>
+                                <div class="progress progress-micro mb-10">
+                                    <div class="progress-bar bg-success-400" style="width: @percentage%">
+                                        <span class="sr-only">@item.Units% Complete</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+}
+
+
+
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div> 
+            <div class="col-md-1"></div>
+
+         
+        </div>
+    </div>
+</div>
+
+
+
+<!-- Full width modal -->
+<div id="modal_full" class="modal fade">
+    <div class="modal-dialog modal-full" style="min-height:100%;">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h5 class="modal-title">Student Profile</h5>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-md-9">
+                        <div class="pre-scrollable" style="min-height:500px;">
+                            <div style="width:80%; margin-right:auto; margin-left:auto;">
+                                <div>
+                                    <div class="panel-heading">
+                                        <h5 class="panel-title">Grades</h5>
+                                        <div class="heading-elements">
+                                            <a class="btn btn-primary" href="#">Add New</a>
+                                        </div>
+                                    </div>
+                                    <table class="table table-hover">
+                                        <thead>
+                                            <tr>
+                                                <th>#</th>
+                                                <th>Exam</th>
+                                                <th>Grade</th>
+                                                <th>Options</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td>1</td>
+                                                <td>Ex1</td>
+                                                <td>80</td>
+                                                <td>
+                                                    <ul class="icons-list">
+                                                        <li><a href="#"><i class="icon-pencil7"></i></a></li>
+                                                        <li><a href="#"><i class="icon-trash"></i></a></li>
+                                                    </ul>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>2</td>
+                                                <td>Ex2</td>
+                                                <td>70</td>
+                                                <td>
+                                                    <ul class="icons-list">
+                                                        <li><a href="#"><i class="icon-pencil7"></i></a></li>
+                                                        <li><a href="#"><i class="icon-trash"></i></a></li>
+                                                    </ul>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>3</td>
+                                                <td>Ex3</td>
+                                                <td>89</td>
+                                                <td>
+                                                    <ul class="icons-list">
+                                                        <li><a href="#"><i class="icon-pencil7"></i></a></li>
+                                                        <li><a href="#"><i class="icon-trash"></i></a></li>
+                                                    </ul>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>4</td>
+                                                <td>Ex4</td>
+                                                <td>65</td>
+                                                <td>
+                                                    <ul class="icons-list">
+                                                        <li><a href="#"><i class="icon-pencil7"></i></a></li>
+                                                        <li><a href="#"><i class="icon-trash"></i></a></li>
+                                                    </ul>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <div>
+                                    <div class="panel-heading">
+                                        <h5 class="panel-title">Notes</h5>
+                                        <div class="heading-elements">
+                                            <a class="btn btn-primary" href="#">Add New</a>
+                                        </div>
+                                    </div>
+                                    <table class="table table-hover">
+                                        <thead>
+                                            <tr>
+                                                <th>#</th>
+                                                <th>Note</th>
+                                                <th>Date</th>
+                                                <th>Options</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+
+                                            @foreach (var item in listOfNote.Where(a => a.StudentID == 5).ToList())
+                                            {
+                                                <tr>
+                                                    <td>
+                                                        @item.StudentID
+                                                    </td>
+                                                    <td>@item.Title</td>
+                                                    <td>@item.CreatedDate</td>
+                                                    <td>
+                                                        <ul class="icons-list">
+                                                            <li><a href="#"><i class="icon-pencil7"></i></a></li>
+                                                            <li><a href="#"><i class="icon-trash"></i></a></li>
+                                                        </ul>
+                                                    </td>
+                                                </tr>
+                                            }
+
+
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+
+
+
+                        </div>
+
+                    </div>
+                    <div class="col-md-3">
+                        <div class="content-group-sm">
+                            <h5 id="studentname" class="text-semibold no-margin-bottom text-center">
+                                Sundar Pichai
+                            </h5>
+                            <span id="studentaubid" class="display-block text-center">201804556</span>
+
+                        </div>
+                        <div class="text-center">
+                            <a href="#" class="display-inline-block content-group-sm">
+                                <img id="studentpicture" src="@Url.Content("~/Content/assets/images/2.jpg")" class="img-circle img-responsive" alt="" style="width: 220px; height: 220px;">
+                            </a>
+                        </div>
+                        <ul class="list-inline no-margin-bottom text-center">
+                            <li><a href="#" class="btn bg-blue-700 btn-rounded btn-icon" title="Send an Email"><i class="icon-paperplane"></i></a></li>
+                            <li><a href="#" class="btn bg-blue-700 btn-rounded btn-icon" title="Send Assesment Email"><i class="icon-rulers"></i></a></li>
+                            <li><a href="#" class="btn bg-blue-700 btn-rounded btn-icon" title="Export Info"><i class=" icon-file-excel"></i></a></li>
+                            <li><a href="#" class="btn bg-blue-700 btn-rounded btn-icon" title="Print Record"><i class=" icon-printer"></i></a></li>
+
+                        </ul>
+                        <table class="table table-borderless table-xs content-group-sm" style="margin-top:10px;">
+                            <tbody>
+                                <tr>
+                                    <td><i class=" icon-user position-left"></i> Full Name:</td>
+                                    <td class="text-right"> <span id="studentfullname" class="pull-right-sm">Yara Ahmad Younes</span></td>
+                                </tr>
+                                <tr>
+                                    <td><i class="icon-envelop4   position-left"></i> Email:</td>
+                                    <td class="text-right"><a href="#" id="studentemail">yay00@mail.aub.edu</a></td>
+                                </tr>
+                                <tr>
+                                    <td><i class="icon-file-check position-left"></i> Team:</td>
+                                    <td class="text-right">None</td>
+                                </tr>
+                                <tr>
+                                    <td><i class="icon-alarm-add position-left"></i> Updated:</td>
+                                    <td class="text-right">12 May, 2015</td>
+                                </tr>
+                                <tr>
+                                    <td><i class="icon-alarm-check position-left"></i> Created:</td>
+                                    <td class="text-right">25 Feb, 2015</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- /full width modal -->
+<div id="modal_full" class="modal fade">
+    <div class="modal-dialog  ">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h5 class="modal-title">Add Notes</h5>
+            </div>
+            <div class="modal-body">
+            </div>
+            </div>
+        </div>
+    </div>
+
+
+                <script type="text/javascript">
+
+                    $(function () { 
+                        // Table setup
+                        // ------------------------------
+
+                        // Setting datatable defaults
+                        $.extend($.fn.dataTable.defaults, {
+                            autoWidth: false, 
+                            lengthChange: true,
+                            pageLength: 100,
+                            columnDefs: [{
+                                orderable: false,
+                                width: '100px',
+                                targets: [5]
+                            }],
+                            dom: '<"datatable-header"fl><"datatable-scroll-wrap"t><"datatable-footer"ip>',
+                            language: {
+                                search: '<span>Filter:</span> _INPUT_',
+                                searchPlaceholder: 'Type to filter...',
+                                lengthMenu: '<span>Show:</span> _MENU_',
+                                paginate: { 'first': 'First', 'last': 'Last', 'next': '&rarr;', 'previous': '&larr;' }
+                            },
+                            drawCallback: function () {
+                                $(this).find('tbody tr').slice(-3).find('.dropdown, .btn-group').addClass('dropup');
+                            },
+                            preDrawCallback: function () {
+                                $(this).find('tbody tr').slice(-3).find('.dropdown, .btn-group').removeClass('dropup');
+                            }
+                        });
+
+
+
+
+                        // Basic initialization
+                        var table = $('.datatable-select-basic').DataTable({
+                            select: true 
+
+                        });
+
+                        table.on('select', function (e, dt, type, indexes) {
+                            if (type === 'row') {
+                                var data = table.rows(indexes).data();
+                                var selecteddata = (data[0]);
+                                document.getElementById('studentaubid').innerText = selecteddata[0];
+                                document.getElementById('studentname').innerText = selecteddata[1] + " " + selecteddata[2];
+                                document.getElementById('studentfullname').innerText = selecteddata[1] + " " + selecteddata[5] + " " + selecteddata[2];
+                                document.getElementById('studentemail').innerText = selecteddata[6];
+                                document.getElementById('studentpicture').src = selecteddata[7];
+
+                            }
+                        }); 
+                    });
+
+
+                    // Pie chart
+                    // ------------------------------
+
+                    // Generate chart
+                    var pie_chart = c3.generate({
+                        bindto: '#c3-pie-chart',
+                        size: { width: 700, height:500 },
+                        color: {
+                            pattern: ['#3F51B5', '#FF9800', '#4CAF50', '#00BCD4', '#F44336']
+                        },
+                        data: {
+                            columns: [
+
+                                @foreach(var item in listOfClos)
+                                {
+                                    @Html.Raw("['"+item.CLO+"', "+Convert.ToInt32(item.Units)+"],");
+                                } 
+                            ],
+                            type: 'pie'
+                        }
+                    });
+
+                
+
+                    //// Change data
+                    //setTimeout(function () {
+                    //    pie_chart.load({
+                    //        columns: [
+                    //            ["setosa", 0.2, 0.2, 0.2, 0.2, 0.2, 0.4, 0.3, 0.2, 0.2, 0.1, 0.2, 0.2, 0.1, 0.1, 0.2, 0.4, 0.4, 0.3, 0.3, 0.3, 0.2, 0.4, 0.2, 0.5, 0.2, 0.2, 0.4, 0.2, 0.2, 0.2, 0.2, 0.4, 0.1, 0.2, 0.2, 0.2, 0.2, 0.1, 0.2, 0.2, 0.3, 0.3, 0.2, 0.6, 0.4, 0.3, 0.2, 0.2, 0.2, 0.2],
+                    //            ["versicolor", 1.4, 1.5, 1.5, 1.3, 1.5, 1.3, 1.6, 1.0, 1.3, 1.4, 1.0, 1.5, 1.0, 1.4, 1.3, 1.4, 1.5, 1.0, 1.5, 1.1, 1.8, 1.3, 1.5, 1.2, 1.3, 1.4, 1.4, 1.7, 1.5, 1.0, 1.1, 1.0, 1.2, 1.6, 1.5, 1.6, 1.5, 1.3, 1.3, 1.3, 1.2, 1.4, 1.2, 1.0, 1.3, 1.2, 1.3, 1.3, 1.1, 1.3],
+                    //            ["virginica", 2.5, 1.9, 2.1, 1.8, 2.2, 2.1, 1.7, 1.8, 1.8, 2.5, 2.0, 1.9, 2.1, 2.0, 2.4, 2.3, 1.8, 2.2, 2.3, 1.5, 2.3, 2.0, 2.0, 1.8, 2.1, 1.8, 1.8, 1.8, 2.1, 1.6, 1.9, 2.0, 2.2, 1.5, 1.4, 2.3, 2.4, 1.8, 1.8, 2.1, 2.4, 2.3, 1.9, 2.3, 2.5, 2.3, 1.9, 2.0, 2.3, 1.8],
+                    //        ]
+                    //    });
+                    //}, 4000);
+                    //setTimeout(function () {
+                    //    pie_chart.unload({
+                    //        ids: 'data1'
+                    //    });
+                    //    pie_chart.unload({
+                    //        ids: 'data2'
+                    //    });
+                    //}, 8000);
+
+
+                </script>

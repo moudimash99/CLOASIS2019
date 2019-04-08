@@ -1,0 +1,247 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>@ViewBag.Title - CLOASIS Web App</title>
+    <!-- Global stylesheets -->
+    <link href="https://fonts.googleapis.com/css?family=Roboto:400,300,100,500,700,900" rel="stylesheet" type="text/css">
+    <link href="@Url.Content("~/Content/assets/css/icons/icomoon/styles.css")" rel="stylesheet" type="text/css">
+    <link href="@Url.Content("~/Content/assets/css/bootstrap.css")" rel="stylesheet" type="text/css">
+    <link href="@Url.Content("~/Content/assets/css/non-responsive.css")" rel="stylesheet" type="text/css">
+    <link href="@Url.Content("~/Content/assets/css/core.css")" rel="stylesheet" type="text/css">
+    <link href="@Url.Content("~/Content/assets/css/components.css")" rel="stylesheet" type="text/css">
+    <link href="@Url.Content("~/Content/assets/css/colors.css")" rel="stylesheet" type="text/css">
+    <!-- /global stylesheets -->
+    <!-- Core JS files -->
+    <script type="text/javascript" src="@Url.Content("~/Content/assets/js/plugins/loaders/pace.min.js")"></script>
+    <script type="text/javascript" src="@Url.Content("~/Content/assets/js/core/libraries/jquery.min.js")"></script>
+    <script type="text/javascript" src="@Url.Content("~/Content/assets/js/core/libraries/bootstrap.min.js")"></script>
+    <script type="text/javascript" src="@Url.Content("~/Content/assets/js/plugins/loaders/blockui.min.js")"></script>
+    <script type="text/javascript" src="@Url.Content("~/Content/assets/js/plugins/ui/nicescroll.min.js")"></script>
+    <script type="text/javascript" src="@Url.Content("~/Content/assets/js/plugins/ui/drilldown.js")"></script>
+    <!-- /core JS files -->
+    <!-- Theme JS files -->
+    <script type="text/javascript" src="@Url.Content("~/Content/assets/js/plugins/visualization/c3/c3.min.js")"></script>
+    @*<script type="text/javascript" src="@Url.Content("~/Content/assets/js/plugins/visualization/echarts/echarts.js")"></script>*@
+    <script type="text/javascript" src="@Url.Content("~/Content/assets/js/plugins/visualization/d3/d3.min.js")"></script>
+
+    <script type="text/javascript" src="@Url.Content("~/Content/assets/js/plugins/visualization/d3/d3_tooltip.js")"></script>
+    <script type="text/javascript" src="@Url.Content("~/Content/assets/js/plugins/forms/styling/switchery.min.js")"></script>
+    <script type="text/javascript" src="@Url.Content("~/Content/assets/js/plugins/forms/styling/uniform.min.js")"></script>
+    <script type="text/javascript" src="@Url.Content("~/Content/assets/js/plugins/forms/selects/bootstrap_multiselect.js")"></script>
+    <script type="text/javascript" src="@Url.Content("~/Content/assets/js/plugins/ui/moment/moment.min.js")"></script>
+    <script type="text/javascript" src="@Url.Content("~/Content/assets/js/plugins/pickers/daterangepicker.js")"></script>
+    <script type="text/javascript" src="@Url.Content("~/Content/assets/js/plugins/uploaders/dropzone.min.js")"></script>
+    <script type="text/javascript" src="@Url.Content("~/Content/assets/js/plugins/forms/selects/select2.min.js")"></script>
+
+
+    <script type="text/javascript" src="@Url.Content("~/Content/assets/js/plugins/tables/datatables/datatables.min.js")"></script>
+    <script type="text/javascript" src="@Url.Content("~/Content/assets/js/plugins/tables/datatables/extensions/select.min.js")"></script>
+    <script type="text/javascript" src="@Url.Content("~/Content/assets/js/plugins/tables/datatables/extensions/buttons.min.js")"></script>
+
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/js/bootstrap-datepicker.min.js"></script>
+
+
+    <script type="text/javascript" src="@Url.Content("~/Content/assets/js/core/app.js")"></script>
+    @*<script type="text/javascript" src="@Url.Content("~/Content/assets/js/charts/echarts/combinations.js")"></script>*@
+    @*<script type="text/javascript" src="@Url.Content("~/Content/assets/js/charts/echarts/lines_areas.js")"></script>*@
+    <script type="text/javascript" src="@Url.Content("~/Content/assets/js/charts/c3/c3_bars_pies.js")"></script>
+
+
+
+
+    <!-- /theme JS files -->
+    <style>
+        .navbar-inverse {
+            background-color: #a72c41 !important;
+        }
+    </style>
+</head>
+<body >
+    <!-- Main navbar -->
+    <div class="navbar navbar-inverse navbar-static-top">
+        <div class="navbar-header">
+            <a class="navbar-brand" href="@Url.Action("Index", "Home")"><img style="    margin-top: -10px;height: 38px;  margin-left: 20px;" src="@Url.Content("~/Content/logo2.png")" alt=""></a>
+
+            <ul class="nav navbar-nav pull-right visible-xs-block">
+                <li><a data-toggle="collapse" data-target="#navbar-mobile"><i class="icon-tree5"></i></a></li>
+            </ul>
+        </div>
+       
+        <div class="navbar-collapse collapse" id="navbar-mobile">
+            <form class="navbar-form navbar-left">
+                <div class="form-group has-feedback">
+                    <input type="search" class="form-control" style="min-width:450px; " placeholder="Search students">
+                    <div class="form-control-feedback">
+                        <i class="icon-search4 text-muted text-size-base"></i>
+                    </div>
+                </div>
+            </form>
+            <ul class="nav navbar-nav navbar-right">
+
+                @if (ViewBag.CourseName != null)
+    {
+            <li class="dropdown mega-menu mega-menu-wide">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="icon-puzzle4 position-left"></i> CMPS253 <span class="caret"></span></a>
+
+                <div class="dropdown-menu dropdown-content">
+                    <div class="dropdown-content-body">
+                        <div class="row">
+                            <div class="col-md-3">
+                                <span class="menu-heading underlined">Course</span>
+                                <ul class="menu-list">
+                                    <li>
+                                        <a href="@Url.Action("Index","Course", new { courseId = 15 })"><i class="icon-grid"></i> Course Dashboard</a>
+                                    </li>
+                                    <li>
+                                        <a href="@Url.Action("BrowseLectures","Lectures")"><i class="icon-grid"></i> Manage Lectures</a>
+                                    </li>
+                                </ul>
+                                <span class="menu-heading underlined"></span>
+                                <ul class="menu-list">
+                                    <li>
+                                        <a href="@Url.Action("Index","Grades")"><i class="icon-grid"></i>Grades</a>
+                                    </li>
+                                    <li>
+                                        <a href="@Url.Action("CourseGradeDistribution","Course")"><i class="icon-grid"></i>Grade Distribution</a>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="col-md-3">
+
+                                <span class="menu-heading underlined">Assignments</span>
+                                <ul class="menu-list">
+                                    <li>
+                                        <a href="@Url.Action("Assignments","Assignment" , new { courseOfferingId = ViewBag.CourseId })"><i class="icon-grid"></i>Manage Assignments</a>
+                                    </li>
+                                    <li>
+                                        <a href="@Url.Action("Questions","Assignment")"><i class="icon-grid"></i>Manage Questions</a>
+                                    </li>
+                                </ul> 
+                               
+                            </div>
+                            <div class="col-md-3">
+                               
+                                <span class="menu-heading underlined">Registration</span>
+                                <ul class="menu-list">
+                                    <li>
+                                        <a href="@Url.Action("RegisterStudent","Registration")"><i class="icon-add"></i>Register Student</a>
+                                    </li>
+                                    <li>
+                                        <a href="@Url.Action("ImportStudent","Registration")"><i class=" icon-add"></i>Import Students</a>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="col-md-3">
+                                <span class="menu-heading underlined">Teams</span>
+                                <ul class="menu-list">
+                                    <li>
+                                        <a href="@Url.Action("Index","Team")"><i class="icon-grid"></i> Browse Teams</a>
+                                    </li>
+                                    <li>
+                                        <a href="@Url.Action("TeamMaker","Team")"><i class=" icon-add"></i> Team Maker</a>
+                                    </li>
+                                </ul>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </li>
+}
+
+
+            @*<li><a href="@Url.Action("Index", "Home")"><i class="icon-home2 position-left"></i> Home</a></li>*@
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                        <i class="icon-drawer3 position-left"></i>My Courses <span class="caret"></span>
+                    </a>
+                    <ul class="dropdown-menu width-200">
+                        <li><a href="@Url.Action("NewCourseOffering", "Course")"><i class=" icon-add"></i>Add course  instance</a></li>
+
+                        <li><a href="@Url.Action("MyCourses","Course")"><i class=" icon-grid"></i>List  of courses</a></li>
+
+                    </ul>
+                </li>
+
+
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="icon-stack3 position-left"></i> Admin <span class="caret"></span></a>
+                    <ul class="dropdown-menu width-250">
+                        <li>
+                            <a href="@Url.Action("CourseMaker", "Course")"><i class=" icon-add"></i>Course  Maker</a>
+                        </li>
+                        <li>
+                            <a href="@Url.Action("Browse", "Course")"><i class="icon-grid"></i>Browse  courses</a>
+                        </li>
+                        <li class="dropdown-header">Departments</li>
+                        <li>
+                            <a href="@Url.Action("Index", "Department")"><i class="icon-grid"></i> Manage departments</a>
+                        </li>
+
+                        <li class="dropdown-header">Programs</li>
+                        <li>
+                        <li>
+                            <a href="@Url.Action("Index", "Program")"><i class=" icon-grid"></i> Manage Programs</a>
+                        </li>
+
+                        <li class="dropdown-header">Faculties (Collages)</li>
+                        <li>
+                        <li>
+                            <a href="@Url.Action("Index", "Faculty")"><i class="icon-grid"></i> Manage Faculties</a>
+                        </li>
+
+                        <li class="dropdown-header">Users </li>
+                        <li>
+                        <li>
+                            <a href="@Url.Action("Index", "User")"><i class="icon-grid"></i> Manage Users</a>
+                        </li>
+
+                    </ul>
+                </li>
+                <li>
+                </li>
+                <li class="dropdown dropdown-user">
+                    <a class="dropdown-toggle" data-toggle="dropdown">
+                        <img src="@Url.Content("~/Content/assets/images/placeholder.png")" alt="">
+                        <span>@User.Identity.Name</span>
+                        <i class="caret"></i>
+                    </a>
+                    <ul class="dropdown-menu dropdown-menu-right">
+
+                        <li class="divider"></li>
+                        <li><a href="@Url.Action("Logoff","Account")"><i class="icon-switch2"></i>Logout</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </div>
+  
+
+    <!-- /page header -->
+    <!-- Page container -->
+    <div class="page-container">
+        <!-- Page content -->
+        <div class="page-content">
+            <!-- Main content -->
+            <div class="content-wrapper">
+                <div class="page-header-content">
+                    <div class="page-title" style="padding-bottom:10px; padding-top:0px;">
+                        <h5> <span class="text-semibold text-muted">@ViewBag.PageTitle</span></h5>
+                    </div>
+                </div>
+
+                @RenderBody()
+            </div>
+            <!-- /main content -->
+        </div>
+        <!-- /page content -->
+    </div>
+    <!-- /page container -->
+    <!-- Footer -->
+    <div class="footer text-muted" style="margin-top:200px;" >
+        &copy; @DateTime.Now.Year. <a href="#">CLOASIS Web Application</a> - Made with Love by <a href="#" target="_blank">CLOASIS Team</a>
+    </div> 
+</body>
+</html>

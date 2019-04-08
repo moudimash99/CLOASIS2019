@@ -1,0 +1,160 @@
+﻿
+@{
+    ViewBag.Title = "Students in " + ViewBag.CourseTitle;
+    CloasisWeb.ApiInfrastructure.ApiModels.StudentsRoot listOfStudents = (CloasisWeb.ApiInfrastructure.ApiModels.StudentsRoot)ViewBag.students;
+
+}
+
+
+<div class="row"> 
+
+    <div class="col-md-8">
+        <div class="panel panel-flat" style="min-height:700px;">
+            <div class="panel-heading">
+                <h5 class="panel-title">Students in @ViewBag.CourseTitle - @ViewBag.SemesterTitle</h5>
+                <div class="heading-elements">
+                    <ul class="icons-list"> 
+                    </ul>
+                </div>
+            </div>
+            <div class="panel-body">
+                <table class="table datatable-select-basic">
+                    <thead>
+                        <tr>
+                            <th>AUB ID</th>
+                            <th>First Name</th>
+                            <th>Last Name</th>
+                            <th>IAN</th>
+                            <th class="text-center">Section Number</th>
+                            <th style="display:none;">IAN</th>
+                            <th style="display:none;">IAN</th>
+                            <th style="display:none;">Picture</th>
+                            <th class="text-center">Student Id</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @{
+                            foreach (var item in listOfStudents.Courses)
+                            {
+                                <tr>
+                                    <td id="aubid">@item.AUBID</td>
+                                    <td id="firstname">@item.FirstName</td>
+                                    <td id="lastname">@item.LastName</td>
+                                    <td id="ian">@item.IAN</td>
+                                    <td id="section" class="text-center"><span class="label label-success">@item.SectionNumber</span></td>
+                                    <td id="middlename" style="display:none;">@item.Middle</td>
+                                    <td id="email" style="display:none;">@item.email</td>  
+                                    <td id="picture" style="display:none;">@item.Picture</td>  
+                                    <td id="option" class="text-center">
+                                       @item.StudentID
+                                    </td>
+                                </tr>
+                            }
+                        }
+
+                    </tbody>
+                </table>
+            </div>
+        
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="panel panel-flat" style="min-height:700px;">
+            <div class="panel-heading">
+                <h5 class="panel-title"></h5>
+                <div class="heading-elements">
+                    <ul class="icons-list"> 
+                    </ul>
+                </div>
+            </div>
+            <div class="panel-body">
+           
+
+
+                <div class="content-group">
+                    <div class="panel-body bg-blue border-radius-top text-center" style="background-image: url(http://demo.interface.club/limitless/assets/images/bg.png); background-size: contain; ">
+                        <div class="content-group-sm">
+                            <h5 id="studentname" class="text-semibold no-margin-bottom">
+                                -- --
+                            </h5>
+                            <span id="studentaubid" class="display-block">--</span>
+                        </div>
+                        <a href="#" class="display-inline-block content-group-sm">
+                            <img id="studentpicture" src="#" class="img-circle img-responsive" alt="" style="width: 220px; height: 220px;">
+                        </a>
+                        <ul class="list-inline no-margin-bottom"> 
+                            <li><a href="#" class="btn bg-blue-700 btn-rounded btn-icon"><i class="icon-envelop4"></i></a></li>
+                        </ul>
+                    </div>
+                    <div class="panel panel-body no-border-top no-border-radius-top">
+                        <div class="form-group mt-5">
+                            <label class="text-semibold">Full name:</label>
+                            <span id="studentfullname" class="pull-right-sm">--</span>
+                        </div> 
+                        <div class="form-group">
+                            <label class="text-semibold">Student Email:</label>
+                            <span class="pull-right-sm"><a href="#" id="studentemail">--</a></span>
+                        </div> 
+                    </div>
+                </div>
+                 
+
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<script type="text/javascript">
+
+        $(function () {
+
+            // Table setup
+            // ------------------------------
+
+            // Setting datatable defaults
+            $.extend($.fn.dataTable.defaults, {
+                autoWidth: false,
+                columnDefs: [{
+                    orderable: false,
+                    width: '100px',
+                    targets: [5]
+                }],
+                dom: '<"datatable-header"fl><"datatable-scroll-wrap"t><"datatable-footer"ip>',
+                language: {
+                    search: '<span>Filter:</span> _INPUT_',
+                    searchPlaceholder: 'Type to filter...',
+                    lengthMenu: '<span>Show:</span> _MENU_',
+                    paginate: { 'first': 'First', 'last': 'Last', 'next': '&rarr;', 'previous': '&larr;' }
+                },
+                drawCallback: function () {
+                    $(this).find('tbody tr').slice(-3).find('.dropdown, .btn-group').addClass('dropup');
+                },
+                preDrawCallback: function () {
+                    $(this).find('tbody tr').slice(-3).find('.dropdown, .btn-group').removeClass('dropup');
+                }
+            });
+
+
+            // Basic initialization
+            var table = $('.datatable-select-basic').DataTable({
+                select: true 
+            });
+             
+            table.on('select', function (e, dt, type, indexes) {
+                if (type === 'row') {
+                    var data = table.rows(indexes).data();
+                    var selecteddata = (data[0]);  
+                    document.getElementById('studentaubid').innerText = selecteddata[0];
+                    document.getElementById('studentname').innerText = selecteddata[1] + " " + selecteddata[2];
+                    document.getElementById('studentfullname').innerText = selecteddata[1] + " " + selecteddata[5] + " " + selecteddata[2];
+                    document.getElementById('studentemail').innerText = selecteddata[6];
+                    document.getElementById('studentpicture').src = selecteddata[7];
+             
+                }
+            });
+             
+        });
+
+</script>

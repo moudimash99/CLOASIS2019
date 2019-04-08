@@ -1,0 +1,82 @@
+﻿
+
+
+
+
+@*<!-- Toolbar -->
+    <div class="navbar navbar-default navbar-component navbar-xs">
+        <ul class="nav navbar-nav visible-xs-block">
+            <li class="full-width text-center"><a data-toggle="collapse" data-target="#navbar-filter"><i class="icon-menu7"></i></a></li>
+        </ul>
+        <div class="navbar-collapse collapse" id="navbar-filter">
+            <ul class="nav navbar-nav">
+                <li class="active"><a href="@Url.Action("Index", "Course", new { courseId = 15})"  ><i class=" icon-grid position-left"></i> @ViewBag.CourseName</a></li>
+
+            </ul>
+            <div class="navbar-right">
+                <ul class="nav navbar-nav">
+                    <li>
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="icon-stack-text position-left"></i> Lectures <span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li>
+                                <a href="@Url.Action("BrowseLectures","Lectures")"><i class="icon-grid"></i> Manage Lectures</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class=" icon-pencil-ruler position-left"></i> Assignments <span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li>
+                                <a href="@Url.Action("Assignments","Assignment")"><i class="icon-grid"></i>Assignments</a>
+                            </li>
+                            <li>
+                                <a href="@Url.Action("Questions","Assignment")"><i class="icon-grid"></i>Questions</a>
+                            </li>
+
+                        </ul>
+
+                    </li>
+                    <li>
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class=" icon-sort position-left"></i> Grades <span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li>
+                                <a href="@Url.Action("Index","Grades")"><i class="icon-grid"></i>Grades</a>
+                            </li>
+                            <li>
+                                <a href="@Url.Action("CourseGradeDistribution","Course")"><i class="icon-grid"></i>Grade Distribution</a>
+                            </li>
+
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="icon-puzzle3 position-left"></i> Registration <span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li>
+                                <a href="@Url.Action("RegisterStudent","Registration")"><i class="icon-add"></i>Register Student</a>
+                            </li>
+                            <li>
+                                <a href="@Url.Action("ImportStudent","Registration")"><i class=" icon-add"></i>Import Students</a>
+                            </li>
+
+
+                        </ul>
+                    </li>
+
+                    <li>
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class=" icon-users position-left"></i>Teams <span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li>
+                                <a href="@Url.Action("Index","Team")"><i class="icon-grid"></i> Browse Teams</a>
+                            </li>
+                            <li>
+                                <a href="@Url.Action("TeamMaker","Team")"><i class=" icon-add"></i> Team Maker</a>
+                            </li>
+
+                        </ul>
+                    </li>
+
+                </ul>
+            </div>
+        </div>
+    </div>
+    <!-- /toolbar -->*@

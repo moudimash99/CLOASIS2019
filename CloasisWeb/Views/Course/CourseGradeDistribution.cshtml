@@ -1,0 +1,268 @@
+﻿
+@{
+    Layout = "~/Views/Shared/_CourseLayout.cshtml";
+    ViewBag.Title = "Course Grade Distribution";
+    ViewBag.CourseName = "CMPS 253 Spring 2017/2018";
+}
+ 
+
+
+
+
+<div class="row">
+    <div class="col-md-8">
+        <form>
+           
+            <!-- Hover rows -->
+            <div class="panel panel-flat">
+                <div class="panel-heading">
+                    <h5 class="panel-title">Grade Distribution</h5>
+                    <div class="heading-elements">
+                        <a class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" href="#">Add New </a>
+                    </div>
+
+                </div>
+                <div class="panel-body">
+
+                    <div class="table-responsive">
+                        <table class="table table-hover">
+                            <thead>
+                                <tr>
+                                    <th>#</th>
+                                    <th>Assignment Type</th>
+                                    <th>Grade Type</th>
+                                    <th>Weight</th>
+                                    <th>Options</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>1</td>
+                                    <td>Homework</td>
+                                    <td>Average</td>
+                                    <td>0.2</td>
+                                    <td>
+                                        <ul class="icons-list">
+                                            <li><a href="#"><i class="icon-pencil7"></i></a></li>
+                                            <li><a href="#"><i class="icon-trash"></i></a></li>
+
+                                        </ul>
+                                    </td>
+                                </tr>
+
+                                <tr>
+                                    <td>2</td>
+                                    <td>Midterm</td>
+                                    <td>Average</td>
+                                    <td>0.4</td>
+                                    <td>
+                                        <ul class="icons-list">
+                                            <li><a href="#"><i class="icon-pencil7"></i></a></li>
+                                            <li><a href="#"><i class="icon-trash"></i></a></li>
+
+                                        </ul>
+                                    </td>
+                                </tr>
+
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <!-- /hover rows -->
+
+        </form>
+    </div>
+    <div class="col-md-4">
+
+        <!-- Productivity goal  -->
+        <div class="panel panel-body text-center">
+            <div class="svg-inline position-relative" id="progress_icon_two"></div>
+            <h2 class="progress-percentage mt-15 mb-5 text-semibold">Total Percentage</h2>
+
+            <div class="text-size-small text-muted">
+                0.4 more weights needed<div>
+                </div>
+                <!-- /productivity goal -->
+
+            </div>
+
+
+        </div>
+    </div>
+</div>
+
+
+ <!-- Modal -->
+            <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel">Grades Distribution</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div style="padding-right:25px; padding-left:25px;">
+
+                            <div class="form-group">
+                                <label for="inputState">Assignment Type</label>
+                                <select id="inputState" class="form-control">
+                                    <option>Homework</option>
+                                    <option>Labs</option>
+                                    <option>Exam 1</option>
+                                    <option>Final Exam</option>
+                                </select>
+                            </div>
+                            <div class="form-group ">
+                                <label for="inputState">Grade Type</label>
+                                <select id="inputState" class="form-control">
+                                    <option>Average</option>
+                                    <option>Sum(grade)/Sum(max)</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="inputZip">Weight</label>
+                                <input type="text" class="form-control" id="inputZip">
+                            </div>
+
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                <button type="button" class="btn btn-primary">Save</button>
+                            </div>
+
+
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+<script type="text/javascript">
+
+
+    $(function () {
+
+        progressPercentage('#progress_icon_two', 46, 3, "#eee", "#43a047", 0.60);
+
+
+
+
+        // Chart setup
+        function progressPercentage(element, radius, border, backgroundColor, foregroundColor, end) {
+
+
+            // Basic setup
+            // ------------------------------
+
+            // Main variables
+            var d3Container = d3.select(element),
+                startPercent = 0,
+                fontSize = 22,
+                endPercent = end,
+                twoPi = Math.PI * 2,
+                formatPercent = d3.format('.0%'),
+                boxSize = radius * 2;
+
+            // Values count
+            var count = Math.abs((endPercent - startPercent) / 0.01);
+
+            // Values step
+            var step = endPercent < startPercent ? -0.01 : 0.01;
+
+
+            // Create chart
+            // ------------------------------
+
+            // Add SVG element
+            var container = d3Container.append('svg');
+
+            // Add SVG group
+            var svg = container
+                .attr('width', boxSize)
+                .attr('height', boxSize)
+                .append('g')
+                .attr('transform', 'translate(' + radius + ',' + radius + ')');
+
+
+            // Construct chart layout
+            // ------------------------------
+
+            // Arc
+            var arc = d3.svg.arc()
+                .startAngle(0)
+                .innerRadius(radius)
+                .outerRadius(radius - border)
+                .cornerRadius(20);
+
+
+            //
+            // Append chart elements
+            //
+
+            // Paths
+            // ------------------------------
+
+            // Background path
+            svg.append('path')
+                .attr('class', 'd3-progress-background')
+                .attr('d', arc.endAngle(twoPi))
+                .style('fill', backgroundColor);
+
+            // Foreground path
+            var foreground = svg.append('path')
+                .attr('class', 'd3-progress-foreground')
+                .attr('filter', 'url(#blur)')
+                .style({
+                    'fill': foregroundColor,
+                    'stroke': foregroundColor
+                });
+
+            // Front path
+            var front = svg.append('path')
+                .attr('class', 'd3-progress-front')
+                .style({
+                    'fill': foregroundColor,
+                    'fill-opacity': 1
+                });
+
+
+            // Text
+            // ------------------------------
+
+            // Percentage text value
+            var numberText = svg
+                .append('text')
+                .attr('dx', 0)
+                .attr('dy', (fontSize / 2) - border)
+                .style({
+                    'font-size': fontSize + 'px',
+                    'line-height': 1,
+                    'fill': foregroundColor,
+                    'text-anchor': 'middle'
+                });
+
+
+            // Animation
+            // ------------------------------
+
+            // Animate path
+            function updateProgress(progress) {
+                foreground.attr('d', arc.endAngle(twoPi * progress));
+                front.attr('d', arc.endAngle(twoPi * progress));
+                numberText.text(formatPercent(progress));
+            }
+
+            // Animate text
+            var progress = startPercent;
+            (function loops() {
+                updateProgress(progress);
+                if (count > 0) {
+                    count--;
+                    progress += step;
+                    setTimeout(loops, 10);
+                }
+            })();
+        }
+    });
+</script>

@@ -1,0 +1,209 @@
+﻿
+@{
+    ViewBag.Title = "Students";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    CloasisWeb.ApiInfrastructure.ApiModels.StudentsRoot listOfStudents = (CloasisWeb.ApiInfrastructure.ApiModels.StudentsRoot)ViewBag.students;
+
+}
+
+		<!-- Basic initialization -->
+<div class="panel panel-flat">
+    <div class="panel-heading">
+        <h5 class="panel-title">Students</h5>
+        <div class="heading-elements">
+            <ul class="icons-list">
+                <li><a data-action="collapse"></a></li> 
+                <li><a data-action="close"></a></li>
+            </ul>
+        </div>
+    </div>
+    <div class="panel-body">
+     </div>
+    <table class="table datatable-select-basic">
+        <thead>
+            <tr>
+                <th> ID</th>
+                <th>First Name</th>
+                <th>Last Name</th>
+                <th>GPA</th>
+                <th>Section Number</th>
+                <th class="text-center">Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+
+            @{
+                foreach (var item in listOfStudents.Students)
+                {
+                    <tr>
+                        <td>@item.AUBID</td>
+                        <td>@item.FirstName</td>
+                        <td>@item.LastName</td>
+                        <td>@item.IAN</td>
+                        <td><span class="label label-success">@item.SectionNumber</span></td>
+                        <td class="text-center">
+                            <ul class="icons-list">
+                                <li class="dropdown">
+                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                        <i class="icon-menu9"></i>
+                                    </a>
+                                    <ul class="dropdown-menu dropdown-menu-right">
+                                        <li><a href="#"><i class="icon-file-pdf"></i>Records </a></li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </td>
+                    </tr>
+                }
+            }
+
+        
+            <tr>
+                <td>2018000002</td>
+                <td>Hussein</td>
+                <td>Al Rubaie</td>
+                <td>5.2</td>
+                <td><span class="label label-success">Active</span></td>
+                <td class="text-center">
+                    <ul class="icons-list">
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                <i class="icon-menu9"></i>
+                            </a>
+                            <ul class="dropdown-menu dropdown-menu-right">
+                                <li><a href="#"><i class="icon-file-pdf"></i>Records </a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+            <tr>
+                <td>2018000003</td>
+                <td>Ghina</td>
+                <td>Rachidi</td>
+                <td>2.9</td>
+                <td><span class="label label-success">Active</span></td>
+                <td class="text-center">
+                    <ul class="icons-list">
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                <i class="icon-menu9"></i>
+                            </a>
+                            <ul class="dropdown-menu dropdown-menu-right">
+                                <li><a href="#"><i class="icon-file-pdf"></i>Records </a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+            <tr>
+                <td>2018000004</td>
+                <td>Rim</td>
+                <td>Kaouk</td>
+                <td>2.9</td>
+                <td><span class="label label-success">Active</span></td>
+                <td class="text-center">
+                    <ul class="icons-list">
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                <i class="icon-menu9"></i>
+                            </a>
+                            <ul class="dropdown-menu dropdown-menu-right">
+                                <li><a href="#"><i class="icon-file-pdf"></i>Records </a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+
+            <tr>
+                <td>2018000004</td>
+                <td>Racha</td>
+                <td> hamad</td>
+                <td>2.9</td>
+                <td><span class="label label-success">Active</span></td>
+                <td class="text-center">
+                    <ul class="icons-list">
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                <i class="icon-menu9"></i>
+                            </a>
+                            <ul class="dropdown-menu dropdown-menu-right">
+                                <li><a href="#"><i class="icon-file-pdf"></i>Records </a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+ 
+
+            <tr>
+                <td>2018000004</td>
+                <td>Zahra</td>
+                <td>nesser</td>
+                <td>2.9</td>
+                <td><span class="label label-success">Active</span></td>
+                <td class="text-center">
+                    <ul class="icons-list">
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                <i class="icon-menu9"></i>
+                            </a>
+                            <ul class="dropdown-menu dropdown-menu-right">
+                                <li><a href="#"><i class="icon-file-pdf"></i>Records </a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td>2018000004</td>
+                <td>Waleed</td>
+                <td>chayeb</td>
+                <td>2.9</td>
+                <td><span class="label label-success">Active</span></td>
+                <td class="text-center">
+                    <ul class="icons-list">
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                <i class="icon-menu9"></i>
+                            </a>
+                            <ul class="dropdown-menu dropdown-menu-right">
+                                <li><a href="#"><i class="icon-file-pdf"></i>Records </a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+
+            <tr>
+                <td>2018000008</td>
+                <td>Hiba</td>
+                <td>Rachidi</td>
+                <td>2.9</td>
+                <td><span class="label label-success">Active</span></td>
+                <td class="text-center">
+                    <ul class="icons-list">
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                <i class="icon-menu9"></i>
+                            </a>
+                            <ul class="dropdown-menu dropdown-menu-right">
+                                <li><a href="#"><i class="icon-file-pdf"></i>Records </a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+</div>
+<!-- /Basic initialization -->
+
+
+
+
+

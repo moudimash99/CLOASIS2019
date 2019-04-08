@@ -1,0 +1,314 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>@ViewBag.Title - CLOASIS Web App</title>
+    <!-- Global stylesheets -->
+    <link href="https://fonts.googleapis.com/css?family=Roboto:400,300,100,500,700,900" rel="stylesheet" type="text/css">
+    <link href="@Url.Content("~/Content/assets/css/icons/icomoon/styles.css")" rel="stylesheet" type="text/css">
+    <link href="@Url.Content("~/Content/assets/css/bootstrap.css")" rel="stylesheet" type="text/css">
+    <link href="@Url.Content("~/Content/assets/css/non-responsive.css")" rel="stylesheet" type="text/css">
+    <link href="@Url.Content("~/Content/assets/css/core.css")" rel="stylesheet" type="text/css">
+    <link href="@Url.Content("~/Content/assets/css/components.css")" rel="stylesheet" type="text/css">
+    <link href="@Url.Content("~/Content/assets/css/colors.css")" rel="stylesheet" type="text/css">
+    <!-- /global stylesheets -->
+    <!-- Core JS files -->
+    <script type="text/javascript" src="@Url.Content("~/Content/assets/js/plugins/loaders/pace.min.js")"></script>
+    <script type="text/javascript" src="@Url.Content("~/Content/assets/js/core/libraries/jquery.min.js")"></script>
+    <script type="text/javascript" src="@Url.Content("~/Content/assets/js/core/libraries/bootstrap.min.js")"></script>
+    <script type="text/javascript" src="@Url.Content("~/Content/assets/js/plugins/loaders/blockui.min.js")"></script>
+    <script type="text/javascript" src="@Url.Content("~/Content/assets/js/plugins/ui/nicescroll.min.js")"></script>
+    <script type="text/javascript" src="@Url.Content("~/Content/assets/js/plugins/ui/drilldown.js")"></script>
+    <!-- /core JS files -->
+    <!-- Theme JS files -->
+    <script type="text/javascript" src="@Url.Content("~/Content/assets/js/plugins/visualization/d3/d3.min.js")"></script>
+    <script type="text/javascript" src="@Url.Content("~/Content/assets/js/plugins/visualization/d3/d3_tooltip.js")"></script>
+    <script type="text/javascript" src="@Url.Content("~/Content/assets/js/plugins/forms/styling/switchery.min.js")"></script>
+    <script type="text/javascript" src="@Url.Content("~/Content/assets/js/plugins/forms/styling/uniform.min.js")"></script>
+    <script type="text/javascript" src="@Url.Content("~/Content/assets/js/plugins/forms/selects/bootstrap_multiselect.js")"></script>
+    <script type="text/javascript" src="@Url.Content("~/Content/assets/js/plugins/ui/moment/moment.min.js")"></script>
+    <script type="text/javascript" src="@Url.Content("~/Content/assets/js/plugins/pickers/daterangepicker.js")"></script>
+    <script type="text/javascript" src="@Url.Content("~/Content/assets/js/plugins/uploaders/dropzone.min.js")"></script>
+    <script type="text/javascript" src="@Url.Content("~/Content/assets/js/plugins/forms/selects/select2.min.js")"></script>
+
+
+    <script type="text/javascript" src="@Url.Content("~/Content/assets/js/plugins/tables/datatables/datatables.min.js")"></script>
+    <script type="text/javascript" src="@Url.Content("~/Content/assets/js/plugins/tables/datatables/extensions/select.min.js")"></script>
+    <script type="text/javascript" src="@Url.Content("~/Content/assets/js/plugins/tables/datatables/extensions/buttons.min.js")"></script>
+    <script type="text/javascript" src="@Url.Content("~/Content/assets/js/plugins/visualization/echarts/echarts.js")"></script>
+
+
+
+
+    <script type="text/javascript" src="@Url.Content("~/Content/assets/js/core/app.js")"></script>
+    <script type="text/javascript" src="@Url.Content("~/Content/assets/js/charts/echarts/combinations.js")"></script>
+    @*<script type="text/javascript" src="@Url.Content("~/Content/assets/js/pages/dashboard.js")"></script>*@
+
+
+    <!-- /theme JS files -->
+
+    <style>
+        .navbar-inverse {
+            background-color: #a72c41 !important;
+        }
+    </style>
+</head>
+<body>
+    <!-- Main navbar -->
+    <div class="navbar navbar-inverse">
+        <div class="navbar-header">
+            <a class="navbar-brand" href="@Url.Action("Index", "Home")"><img style="margin-top: -10px;height: 40px;" src="@Url.Content("~/Content/logo2.png")" alt=""></a>
+            <ul class="nav navbar-nav pull-right visible-xs-block">
+                <li><a data-toggle="collapse" data-target="#navbar-mobile"><i class="icon-tree5"></i></a></li>
+            </ul>
+        </div>
+        <div class="navbar-collapse collapse" id="navbar-mobile">
+            <ul class="nav navbar-nav navbar-right">
+                <li class="dropdown dropdown-user">
+                    <a class="dropdown-toggle" data-toggle="dropdown">
+                        <img src="@Url.Content("~/Content/assets/images/placeholder.png")" alt="">
+                        <span>Mahmoud</span>
+                        <i class="caret"></i>
+                    </a>
+                    <ul class="dropdown-menu dropdown-menu-right">
+                        <li><a href="#"><i class="icon-user-plus"></i> My profile</a></li>
+                        <li class="divider"></li>
+                        <li><a href="#"><i class="icon-cog5"></i> Account settings</a></li>
+                        <li><a href="@Url.Action("Logoff","Account")"><i class="icon-switch2"></i> Logout</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <!-- /main navbar -->
+    <!-- Second navbar -->
+    <div class="navbar navbar-default navbar-fixed" id="navbar-second">
+        <ul class="nav navbar-nav no-border visible-xs-block">
+            <li><a class="text-center collapsed" data-toggle="collapse" data-target="#navbar-second-toggle"><i class="icon-menu7"></i></a></li>
+        </ul>
+        <div class="navbar-collapse collapse" id="navbar-second-toggle">
+            <ul class="nav navbar-nav">
+                <li class="active"><a href="@Url.Action("Index", "Home")"><i class="icon-display4 position-left"></i> Home</a></li>
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="icon-puzzle4 position-left"></i> Admin <span class="caret"></span></a>
+                    <ul class="dropdown-menu width-250">
+                        <li>
+                            <a href="#"><i class="icon-task"></i>Course  Maker</a>
+                        </li>
+                        <li>
+                            <a href="#"><i class="icon-task"></i>Browse  courses</a>
+                        </li>
+                        <li class="dropdown-header">Departments</li>
+                        <li>
+                            <a href="#"><i class="icon-cash3"></i> Browse departments</a>
+                        </li>
+                        <li>
+                            <a href="#"><i class="icon-cash3"></i> Add department</a>
+                        </li>
+                        <li>
+                            <a href="#"><i class="icon-cash3"></i> Manage CLOs</a>
+                        </li>
+                        <li class="dropdown-header">Programs</li>
+                        <li>
+                        <li>
+                            <a href="#"><i class="icon-cash3"></i> Browse Programs</a>
+                        </li>
+                        <li>
+                            <a href="#"><i class="icon-cash3"></i> Add Program</a>
+                        </li>
+                        <li>
+                            <a href="#"><i class="icon-cash3"></i> Manage CLOs</a>
+                        </li>
+                        <li class="dropdown-header">Faculties (Collages)</li>
+                        <li>
+                        <li>
+                            <a href="#"><i class="icon-cash3"></i> Browse Faculties</a>
+                        </li>
+                        <li>
+                            <a href="#"><i class="icon-cash3"></i> Add Faculty</a>
+                        </li>
+                        <li>
+                            <a href="#"><i class="icon-cash3"></i> Manage CLOs</a>
+                        </li>
+                        <li class="dropdown-header">Faculties (Collages)</li>
+                        <li>
+                        <li>
+                            <a href="#"><i class="icon-cash3"></i> Browse Users</a>
+                        </li>
+                        <li>
+                            <a href="#"><i class="icon-cash3"></i> Reset Password</a>
+                        </li>
+                    </ul>
+                </li>
+                <li class="dropdown mega-menu mega-menu-wide">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="icon-stars position-left"></i> Course <span class="caret"></span></a>
+                    <div class="dropdown-menu dropdown-content">
+                        <div class="dropdown-content-body">
+                            <div class="row">
+                                <div class="col-md-3">
+                                    <span class="menu-heading underlined">Course</span>
+                                    <ul class="menu-list">
+
+                                        <li>
+                                            <a href="@Url.Action("CourseGradeDistribution","Course")"><i class="icon-copy"></i> Course Grade Distribution</a>
+                                        </li>
+                                        <li class="dropdown-header">Lectures</li>
+                                        <li>
+                                            <a href="#"><i class="icon-copy"></i> Browse Lectures</a>
+                                        </li>
+                                        <li>
+                                            <a href="#"><i class="icon-copy"></i> Add Lecture</a>
+                                        </li>
+
+
+                                    </ul>
+                                </div>
+                                <div class="col-md-3">
+                                    <span class="menu-heading underlined">Assignment</span>
+                                    <ul class="menu-list">
+                                        <li>
+                                            <a href="@Url.Action("BrowseAssignments","Assignment")"><i class="icon-indent-decrease2"></i> Browse Assignments</a>
+                                        </li>
+                                        <li>
+                                            <a href="@Url.Action("AddAssignment","Assignment")"><i class="icon-indent-decrease2"></i> Add Assignment</a>
+                                        </li>
+                                        <li>
+                                            <a href="@Url.Action("AssignmentQuestions","Assignment")"><i class="icon-indent-decrease2"></i> Assignment Questions</a>
+                                        </li>
+                                        <li class="dropdown-header">Grading</li>
+                                        <li>
+                                            <a href="@Url.Action("BrowseGrade","Grades")"><i class="icon-copy"></i> Browse Grades</a>
+                                        </li>
+                                        <li>
+                                            <a href="@Url.Action("AddGrades","Grades")"><i class="icon-copy"></i> Add Grade</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <div class="col-md-3">
+                                    <span class="menu-heading underlined">Registration</span>
+                                    <ul class="menu-list">
+                                        <li>
+                                            <a href="@Url.Action("RegistrateNewStudent","Registration")"><i class="icon-indent-decrease2"></i> Register new Student</a>
+                                        </li>
+                                        <li class="dropdown-header">Attendance</li>
+                                        <li>
+                                            <a href="#"><i class="icon-copy"></i> New Attendance</a>
+                                        </li>
+                                        <li>
+                                            <a href="#"><i class="icon-copy"></i> Attendance Entry</a>
+                                        </li>
+                                        <li>
+                                            <a href="#"><i class="icon-copy"></i> View Attendance Record</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <div class="col-md-3">
+                                    <span class="menu-heading underlined">Teams</span>
+                                    <ul class="menu-list">
+                                        <li>
+                                            <a href="#"><i class="icon-indent-decrease2"></i> Browse Teams</a>
+                                        </li>
+                                        <li>
+                                            <a href="#"><i class="icon-indent-decrease2"></i> Team Maker</a>
+                                        </li>
+                                        <li>
+                                            <a href="#"><i class="icon-indent-decrease2"></i> Print Team Roster</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                        <i class="icon-design position-left"></i> My Courses <span class="caret"></span>
+                    </a>
+                    <ul class="dropdown-menu width-200">
+                        <li><a href="#"><i class="icon-align-bottom"></i>Add course  instance</a></li>
+                        <li><a href="#"><i class="icon-design"></i>List  of courses</a></li>
+                    </ul>
+                </li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+                <li>
+                    <a href="#">
+                        <i class="icon-history position-left"></i>
+                        Changelog
+                        <span class="label label-inline position-right bg-success-400">0.1</span>
+                    </a>
+                </li>
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                        <i class="icon-cog3"></i>
+                        <span class="visible-xs-inline-block position-right">Share</span>
+                        <span class="caret"></span>
+                    </a>
+                    <ul class="dropdown-menu dropdown-menu-right">
+                        <li>
+                            <a href="@Url.Action("CourseMaker","Course")"><i class="icon-stack2"></i> Course Maker</a>
+                        </li>
+                        <li>
+                            <a href="@Url.Action("NewCourseOffering","Course")" title="New Course Offering"><i class="icon-align-center-horizontal"></i> New Course Offering</a>
+
+                        </li>
+                        <li>
+                            <a href="#"><i class="icon-stack2"></i> Faculties</a>
+                        </li>
+                        <li>
+                            <a href="#"><i class="icon-stack2"></i> Departments</a>
+                        </li>
+                        <li>
+                            <a href="#"><i class="icon-stack2"></i> Courses</a>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <!-- /second navbar -->
+    <!-- Page header -->
+    <div class="page-header">
+        <div class="page-header-content">
+            <div class="page-title">
+                <h4>
+                    <span class="text-semibold">@ViewBag.Title</span>
+                    <small class="display-block"></small>
+                </h4>
+            </div>
+            <div class="heading-elements">
+                <div class="heading-btn-group">
+                    <a href="#" class="btn btn-link btn-float has-text"><i class="icon-graduation text-primary"></i><span>Students</span></a>
+                    <a href="#" class="btn btn-link btn-float has-text"><i class="icon-users2 text-primary"></i> <span>Attendance</span></a>
+                    <a href="#" class="btn btn-link btn-float has-text"><i class="icon-books text-primary"></i> <span>Lectures</span></a>
+                    <a href="#" class="btn btn-link btn-float has-text"><i class="icon-book2 text-primary"></i> <span>Assingments</span></a>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- /page header -->
+    <!-- Page container -->
+    <div class="page-container">
+        <!-- Page content -->
+        <div class="page-content">
+            <!-- Main content -->
+            <div class="content-wrapper">
+                @RenderBody()
+            </div>
+            <!-- /main content -->
+        </div>
+        <!-- /page content -->
+    </div>
+    <!-- /page container -->
+    <!-- Footer -->
+    <div class="footer text-muted" style="margin-top:200px;">
+        &copy; @DateTime.Now.Year. <a href="#">CLOASIS Web Application</a> by <a href="#" target="_blank">CLOASIS Team</a>
+    </div>
+    <!-- /footer -->
+    @*@RenderSection("scripts", required: false)*@
+</body>
+</html>

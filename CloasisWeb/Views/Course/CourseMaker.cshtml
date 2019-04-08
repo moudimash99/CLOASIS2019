@@ -1,0 +1,115 @@
+﻿@{
+    ViewBag.Title = "Course Maker";
+}
+
+
+<div class="row">
+
+    <div class="col-md-2">  </div>
+    <div class="col-md-8">
+ 
+
+
+
+        <div class="panel panel-flat">
+            <div class="panel-heading">
+                <h5 class="panel-title">Course Maker</h5>
+                <div class="heading-elements">
+                    
+                </div>
+            </div>
+            <div class="panel-body">
+                <form>
+
+                    <div class="form-group">
+                        <label for="formGroupExampleInput">Course Title</label>
+                        <input type="text" class="form-control" id="formGroupExampleInput" placeholder="Intro to Scala">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="formGroupExampleInput">Course Short Title</label>
+                        <input type="text" class="form-control" id="formGroupExampleInput" placeholder="CMPS 300">
+                    </div>
+
+
+                    <!-- Filtering options -->
+                    <div class="form-group">
+                        <label><span class="text-semibold">Department CLOs</span></label>
+                        <div class="multi-select-full">
+                            <select class="multiselect-filtering" multiple="multiple">
+                                <option value="cheese">Art Appreciation</option>
+                                <option value="tomatoes">Arrays</option>
+                                <option value="mozarella">Design Patterns</option>
+                                <option value="mushrooms">Requirements</option>
+
+                            </select>
+                        </div>
+                    </div>
+                    <!-- /filtering options -->
+
+
+                    <div class="form-group">
+                        <label for="exampleFormControlSelect1">College</label>
+                        <select class="form-control" id="exampleFormControlSelect1" disabled="disabled">
+                            <option selected>FAS</option>
+                            <option>FEA</option>
+                            <option>OSB</option>
+
+                        </select>
+
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleFormControlSelect1">Department</label>
+                        <select class="form-control" id="exampleFormControlSelect1" disabled="disabled">
+                            <option>Computer Science</option>
+
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="exampleFormControlSelect1">Program</label>
+                        <select class="form-control" id="exampleFormControlSelect1" disabled="disabled">
+                            <option>B.S. Computer Science</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="exampleFormControlSelect1">Professor</label>
+                        <select class="form-control" id="exampleFormControlSelect1" disabled="disabled">
+                            <option>Mahmoud Bdeir</option>
+                        </select>
+                    </div>
+
+
+
+
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                </form>
+            </div>
+         
+        </div>
+    </div>
+
+    <div class="col-md-2">  </div>
+
+</div>
+
+
+
+
+<!-- Load library -->
+<script>
+    // Enable filtering
+    $('.multiselect-filtering').multiselect({
+        enableFiltering: true,
+        templates: {
+            filter: '<li class="multiselect-item multiselect-filter"><i class="icon-search4"></i> <input class="form-control" type="text"></li>'
+        },
+        onChange: function () {
+            $.uniform.update();
+        }
+    });
+
+    // Styled checkboxes and radios
+    $(".styled, .multiselect-container input").uniform({ radioClass: 'choice' });
+</script>

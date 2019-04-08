@@ -1,0 +1,129 @@
+﻿@{
+    Layout = "~/Views/Shared/_CourseLayout.cshtml";
+    ViewBag.Title = "Manage Lectures";
+    ViewBag.CourseName = "CMPS 253 Spring 2017/2018";
+    List<CloasisWeb.ApiInfrastructure.ApiModels.LectureApiModel> ListofLecs = (List<CloasisWeb.ApiInfrastructure.ApiModels.LectureApiModel>)ViewBag.lecs;
+
+}
+
+
+
+<div class="row">
+    <div class="col-md-2">
+        <!-- Don't write any code here unless you needed a chart or info box-->
+    </div>
+    <div class="col-md-8">
+     
+
+            <div class="panel panel-flat">
+                <div class="panel-heading">
+                    <h5 class="panel-title">Manage Lectures</h5>
+                    <div class="heading-elements">
+                        <a class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" href="#">Add New </a>
+                    </div>
+                </div>
+                <div class="panel-body">
+                </div>
+                <div class="table-responsive">
+                    <table class="table table-hover">
+                        <thead>
+                            <tr>
+                                <th>#</th>
+                                <th>Lecture Date</th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+
+                            @foreach (var item in ListofLecs)
+    {
+                        <tr>
+                            <td>@item.LectureId</td>
+                            <td>@item.LectureDate.ToLongDateString()</td> 
+                            <td>
+                                <ul class="icons-list">
+                                    <li><a href="#"><i class="icon-pencil7"></i></a></li>
+                                    <li><a href="#"><i class="icon-trash"></i></a></li>
+                                </ul>
+                            </td>
+                        </tr>
+}
+                       
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+
+      
+    </div>
+    <div class="col-md-2">
+        <!-- Don't write any code here unless you needed a chart or info box-->
+    </div>
+
+</div>
+
+
+
+
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Add New</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <form action="@Url.Action("AddLecture", "Lectures")">
+                <div class="modal-header">
+                     
+                    <div class="form-group">
+
+                        <label>Date</label>
+
+                        <input class="form-control" id="date" name="date" value="@DateTime.Now.ToShortDateString()" placeholder="MM/DD/YYY" type="text" />
+
+                    </div>
+
+
+
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-primary">Save</button>
+                </div>
+            </form>
+
+
+        </div>
+            </div>
+        </div> 
+
+
+<script>
+
+    $(document).ready(function () {
+
+        var date_input = $('input[name="date"]'); //our date input has the name "date"
+
+        var container = $('.bootstrap-iso form').length > 0 ? $('.bootstrap-iso form').parent() : "body";
+
+        date_input.datepicker({
+
+            format: 'mm/dd/yyyy',
+
+            container: container,
+
+            todayHighlight: true,
+
+            autoclose: true,
+
+        })
+
+    })
+
+</script>

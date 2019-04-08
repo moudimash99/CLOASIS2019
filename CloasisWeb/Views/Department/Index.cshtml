@@ -1,0 +1,135 @@
+﻿
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.Title = "Departments"; 
+}
+
+
+<div class="row">
+
+    <div class="col-md-2">  </div>
+    <div class="col-md-8">
+        <div class="panel panel-flat">
+            <div class="panel-heading">
+                <h5 class="panel-title">Manage Departments</h5>
+                <div class="heading-elements">
+                    <a class="btn btn-primary" href="#" data-toggle="modal" data-target="#Modal">Add New</a>
+                </div>
+            </div>
+            <div class="panel-body">
+            </div>
+            <div class="table-responsive">
+                <table class="table table-hover">
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>Department Title</th>
+                            <th>Description</th>
+                            <th>Options</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>1</td>
+                            <td>Computer Science Department</td>
+                            <td>..</td>
+                            <td>
+                                <ul class="icons-list">
+                                    <li><a href="#"><i class="icon-pencil7"></i></a></li>
+                                    <li><a href="#"><i class="icon-trash"></i></a></li>
+                                    <li><a href="#" title="Manage CLOs"><i class="icon-cog7"></i></a></li>
+                                </ul>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>2</td>
+                            <td>Physics</td>
+                            <td>..</td>
+                            <td>
+                                <ul class="icons-list">
+                                    <li><a href="#"><i class="icon-pencil7"></i></a></li>
+                                    <li><a href="#"><i class="icon-trash"></i></a></li>
+                                    <li><a href="#" title="Manage CLOs"><i class="icon-cog7"></i></a></li>
+                                </ul>
+                            </td>
+                        </tr>
+                
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+    </div>
+    <div class="col-md-2">  </div>
+
+</div>
+
+
+
+
+<div class="modal fade" id="Modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Add New</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+
+
+                <form>
+                    <div class="form-group">
+                        <label>Department Title</label>
+                        <input type="text" class="form-control" placeholder="Enter Title">
+                    </div>
+                    <div class="form-group">
+                        <label>Department Description</label>
+                        <textarea class="form-control" placeholder="Enter Description"></textarea>
+                    </div>
+
+
+
+                    <div class="form-group">
+                         <div class="multi-select-full">
+                            <select class="multiselect-select-all-filtering form-control" multiple="multiple">
+                                <option value="cheese">CLO 1</option>
+                                <option value="tomatoes">CLO 2</option>
+                                <option value="mozarella">CLO 3</option> 
+                            </select>
+                        </div>
+                    </div>
+
+
+
+                </form>
+
+
+
+
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary">Save changes</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<script type="text/javascript">
+     // Select All and Filtering features
+    $('.multiselect-select-all-filtering').multiselect({
+        includeSelectAllOption: true,
+        enableFiltering: true,
+        templates: {
+            filter: '<li class="multiselect-item multiselect-filter"><i class="icon-search4"></i> <input class="form-control" type="text"></li>'
+        },
+        onSelectAll: function() {
+            $.uniform.update();
+        }
+    });
+</script>
